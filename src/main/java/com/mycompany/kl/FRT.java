@@ -111,18 +111,18 @@ public class FRT extends javax.swing.JFrame {
         tbSach.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbSach.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã sách", "Tên sách", "Thể loại", "Mã vị trí", "Tình trạng", "Tác giả", "Nhà xuất bản", "Mã ngôn ngữ", "Số trang", "Năm xuất bản", "Giá sách", "Số lần tái bản"
+                "MASACH", "TENSACH", "TENTACGIA", "THELOAI", "SOLUONG", "SOLUONGCONLAI", "SOTRANG", "MAVITRI", "TENNXB"
             }
         ));
         jScrollPane1.setViewportView(tbSach);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 246, 676, 207));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 676, 207));
 
         pack();
     }// </editor-fold>                        
