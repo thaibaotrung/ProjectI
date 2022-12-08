@@ -2,8 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package main.java.com.mycompany.kl;
-import org.xml.sax.Attributes;
+package program;
+
 import java.awt.Color;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +14,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.GroupLayout;
+import java.awt.Font;
+import javax.swing.JLabel;
 /**
  *
  * @author oOOo
@@ -31,14 +36,14 @@ public class FRT extends javax.swing.JFrame {
         initTableModel();
     }
     
-    
     private void initTableModel(){
-        String[] columnNames = new String[]{"MASACH", "TENSACH", "TENTACGIA", "THELOAI", "SOLUONG", "SOLUONGCONLAI", "SOTRANG", "MAVITRI"};
+        String[] columnNames = new String[]{"Mã sách", "Tên sách", "Mã loại sách", "Mã vị trí", "Tình trạng", "Mã tác giả", "Mã nhà xuất bản", "Mã ngôn ngữ", "Số trang", "Năm xuất bản", "Giá sách"};
         tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(columnNames);
-        tbSach.setModel(tblModel);
+     //   tblBooks.setModel(tblModel);
     }
-    
+ //   SachDao dao = new SachDao();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,35 +56,27 @@ public class FRT extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
-        status = new javax.swing.JLabel();
         btnTimkiemtheotheloai = new javax.swing.JButton();
         txtTimkiem = new javax.swing.JTextField();
         btnTimkiemtheoten = new javax.swing.JButton();
         btnTimkiemtheotacgia = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbSach = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setFont(new Font("Segoe UI", Font.BOLD, 22)); // NOI18N
         jLabel3.setText("Tìm kiếm sách");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 17, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new Font("Segoe UI", Font.BOLD, 14)); // NOI18N
         jLabel4.setText("Nhập từ khóa");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 124, -1, -1));
 
-        btnExit.setText("Exit");
+        btnExit.setText("Thoát");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
             }
         });
-        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(738, 489, -1, -1));
-
-        status.setText("STATUS:");
-        getContentPane().add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 492, -1, -1));
 
         btnTimkiemtheotheloai.setText("Tìm kiếm theo thể loại");
         btnTimkiemtheotheloai.addActionListener(new java.awt.event.ActionListener() {
@@ -87,10 +84,8 @@ public class FRT extends javax.swing.JFrame {
                 btnTimkiemtheotheloaiActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTimkiemtheotheloai, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 181, -1, -1));
 
         txtTimkiem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        getContentPane().add(txtTimkiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 126, 335, -1));
 
         btnTimkiemtheoten.setText("Tìm kiếm theo tên");
         btnTimkiemtheoten.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +93,6 @@ public class FRT extends javax.swing.JFrame {
                 btnTimkiemtheotenActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTimkiemtheoten, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 65, 148, -1));
 
         btnTimkiemtheotacgia.setText("Tìm kiếm theo tác giả");
         btnTimkiemtheotacgia.addActionListener(new java.awt.event.ActionListener() {
@@ -106,10 +100,9 @@ public class FRT extends javax.swing.JFrame {
                 btnTimkiemtheotacgiaActionPerformed(evt);
             }
         });
-        getContentPane().add(btnTimkiemtheotacgia, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 117, 148, -1));
 
-        tbSach.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tbSach.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null, null},
@@ -117,57 +110,106 @@ public class FRT extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã sách", "Tên sách", "Thể loại", "Mã vị trí", "Tình trạng", "Tác giả", "Nhà xuất bản", "Mã ngôn ngữ", "Số trang", "Năm xuất bản", "Giá sách", "Số lần tái bản"
+                "Mã sách", "Tên sách", "Thể loại", "Tình trạng", "Tác giả", "Nhà xuất bản"
             }
         ));
-        jScrollPane1.setViewportView(tbSach);
+        jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 246, 676, 207));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        layout.setHorizontalGroup(
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createSequentialGroup()
+        					.addGap(143)
+        					.addComponent(jLabel4)
+        					.addGap(18)
+        					.addComponent(txtTimkiem, GroupLayout.PREFERRED_SIZE, 335, GroupLayout.PREFERRED_SIZE)
+        					.addGap(82)
+        					.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(btnTimkiemtheotheloai, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        						.addComponent(btnTimkiemtheotacgia, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+        						.addComponent(btnTimkiemtheoten, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)))
+        				.addComponent(btnExit, Alignment.TRAILING))
+        			.addGap(42))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(341)
+        			.addComponent(jLabel3)
+        			.addContainerGap(366, Short.MAX_VALUE))
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(82)
+        			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 676, GroupLayout.PREFERRED_SIZE)
+        			.addContainerGap(96, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+        	layout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(layout.createSequentialGroup()
+        			.addGap(22)
+        			.addComponent(jLabel3)
+        			.addGap(18)
+        			.addComponent(btnTimkiemtheoten)
+        			.addGap(18)
+        			.addGroup(layout.createParallelGroup(Alignment.LEADING)
+        				.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+        					.addComponent(txtTimkiem, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+        					.addComponent(jLabel4))
+        				.addGroup(layout.createSequentialGroup()
+        					.addComponent(btnTimkiemtheotacgia)
+        					.addGap(18)
+        					.addComponent(btnTimkiemtheotheloai)))
+        			.addGap(78)
+        			.addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 207, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+        			.addComponent(btnExit)
+        			.addGap(19))
+        );
+        getContentPane().setLayout(layout);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
+    	view.Tuychon tuychon = new view.Tuychon();
         dispose();
+        tuychon.setVisible(true);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnTimkiemtheotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemtheotenActionPerformed
         // TODO add your handling code here:
         try{
-            String url = "jdbc:mysql://localhost/quanlysach";
-        var user = "root";
-        var password = "";
-             Connection con = DriverManager.getConnection(url, user, password);
+            String connectionURL = "jdbc:sqlserver://localhost:1433;databaseName=DemoDB";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             
+            Connection con = DriverManager.getConnection(connectionURL);
             
-            String sql = "select * from sach where TENSACH like '%"+txtTimkiem.getText()+"%'";
-            
+            String sql = "select * from book where title like ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
-           
-            ResultSet rs = pstmt.executeQuery();
             
-            if(rs != null){
+            String searchCriteria = "%";
+            if(txtTimkiem.getText().equals("")){
+                searchCriteria  += txtTimkiem.getText() + "%";
+            }
+            pstmt.setString(1, searchCriteria);
+            ResultSet rs = pstmt.executeQuery();
             tblModel.setRowCount(0);
             while(rs.next()){
                 tblModel.addRow(new Object[]{
-                rs.getString("MASACH"),
-                rs.getString("TENSACH"),
-                rs.getString("TENTACGIA"),
-                rs.getString("THELOAI"),
-                rs.getString("SOLUONG"),
-                rs.getString("SOLUONGCONLAI"),
-                rs.getString("SOTRANG"),
-                rs.getString("MAVITRI"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
                 
             });
             }
-            
             tblModel.fireTableDataChanged();
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "Khong tim thay");
-            }
         }
         
         
@@ -180,29 +222,34 @@ public class FRT extends javax.swing.JFrame {
     private void btnTimkiemtheotacgiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemtheotacgiaActionPerformed
         // TODO add your handling code here:
         try{
-            String url = "jdbc:mysql://localhost/quanlysach";
-        var user = "root";
-        var password = "";
-             Connection con = DriverManager.getConnection(url, user, password);
+            String connectionURL = "jdbc:sqlserver://localhost:1433;databaseName=DemoDB";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             
+            Connection con = DriverManager.getConnection(connectionURL);
             
-            String sql = "select * from sach where TENSACH like '%"+txtTimkiem.getText()+"%'";
-            
+            String sql = "select * from book where title like ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
-           
-            ResultSet rs = pstmt.executeQuery();
             
+            String searchCriteria = "%";
+            if(txtTimkiem.getText().equals("")){
+                searchCriteria  += txtTimkiem.getText() + "%";
+            }
+            pstmt.setString(1, searchCriteria);
+            ResultSet rs = pstmt.executeQuery();
             tblModel.setRowCount(0);
             while(rs.next()){
                 tblModel.addRow(new Object[]{
-                rs.getString("MASACH"),
-                rs.getString("TENSACH"),
-                rs.getString("TENTACGIA"),
-                rs.getString("THELOAI"),
-                rs.getString("SOLUONG"),
-                rs.getString("SOLUONGCONLAI"),
-                rs.getString("SOTRANG"),
-                rs.getString("MAVITRI"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
                 
             });
             }
@@ -219,29 +266,34 @@ public class FRT extends javax.swing.JFrame {
     private void btnTimkiemtheotheloaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemtheotheloaiActionPerformed
         // TODO add your handling code here:
         try{
-            String url = "jdbc:mysql://localhost/quanlysach";
-        var user = "root";
-        var password = "";
-             Connection con = DriverManager.getConnection(url, user, password);
+            String connectionURL = "jdbc:sqlserver://localhost:1433;databaseName=DemoDB";
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             
+            Connection con = DriverManager.getConnection(connectionURL);
             
-            String sql = "select * from sach where TENSACH like '%"+txtTimkiem.getText()+"%'";
-            
+            String sql = "select * from book where title like ?";
             PreparedStatement pstmt = con.prepareStatement(sql);
-           
-            ResultSet rs = pstmt.executeQuery();
             
+            String searchCriteria = "%";
+            if(txtTimkiem.getText().equals("")){
+                searchCriteria  += txtTimkiem.getText() + "%";
+            }
+            pstmt.setString(1, searchCriteria);
+            ResultSet rs = pstmt.executeQuery();
             tblModel.setRowCount(0);
             while(rs.next()){
                 tblModel.addRow(new Object[]{
-                rs.getString("MASACH"),
-                rs.getString("TENSACH"),
-                rs.getString("TENTACGIA"),
-                rs.getString("THELOAI"),
-                rs.getString("SOLUONG"),
-                rs.getString("SOLUONGCONLAI"),
-                rs.getString("SOTRANG"),
-                rs.getString("MAVITRI"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
+                rs.getString("Tên sách"),
+                rs.getString("Mã sách"),
                 
             });
             }
@@ -281,7 +333,6 @@ public class FRT extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FRT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -299,8 +350,6 @@ public class FRT extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel status;
-    private javax.swing.JTable tbSach;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtTimkiem;
-    // End of variables declaration//GEN-END:variables
 }
